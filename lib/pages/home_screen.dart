@@ -11,8 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppointmentsBloc, AppointmentsState>(
       builder: (context, state) {
-        final appointmentsBloc = BlocProvider.of<AppointmentsBloc>(context);
-        final appointments = appointmentsBloc.state.appointmentList;
+        final appointments = state.appointmentList;
 
         return Scaffold(
           appBar: AppBar(
@@ -22,7 +21,7 @@ class HomeScreen extends StatelessWidget {
             centerTitle: true,
             forceMaterialTransparency: true,
             title: const Text(
-              'App doctor',
+              'My doctor schedule',
               style: TextStyle(
                 fontSize: 21,
                 fontWeight: FontWeight.w600,
@@ -49,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                               );
                             },
                             title: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   appointments[index].speciality,

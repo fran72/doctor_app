@@ -1,7 +1,9 @@
+import 'package:app_doctor/bloc/appointments/appointments_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:app_doctor/services/appointments_service.dart';
 import 'package:app_doctor/models/appointment.dart';
 import 'package:app_doctor/models/nav_params.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -12,9 +14,12 @@ class DetailsScreen extends StatelessWidget {
     final navigationParams =
         ModalRoute.of(context)!.settings.arguments as NavParams;
 
+    final appointmentsBloc = BlocProvider.of<AppointmentsBloc>(context);
+    final appointments = appointmentsBloc.state.appointmentList;
+
     final AppointmentsService appointmentService = AppointmentsService();
-    final Appointment appointment =
-        appointmentService.loadAppointmentById(navigationParams.idAppointment);
+    final Appointment appointment = appointmentService.loadAppointmentById(
+        appointments, navigationParams.idAppointment);
 
     return Scaffold(
       body: Container(

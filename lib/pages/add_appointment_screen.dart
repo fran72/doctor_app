@@ -69,9 +69,6 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                         const Text('CREATE A NEW APPOINTMENT'),
                         const SizedBox(height: 40),
                         DropdownMenu(
-                            onSelected: (value) {
-                              debugPrint('$value');
-                            },
                             controller: specialityController,
                             width: double.infinity,
                             dropdownMenuEntries: const <DropdownMenuEntry<
@@ -155,7 +152,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                         appointmentsBloc.add(
                             OnAddAppointmentEvent(appointment: newAppointment));
 
-                        Navigator.pushReplacementNamed(context, 'home');
+                        Navigator.pop(context, 'home');
                       },
                       child: const Text(
                         'SAVE',

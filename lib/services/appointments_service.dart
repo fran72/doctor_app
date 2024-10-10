@@ -9,7 +9,7 @@ class AppointmentsService extends ChangeNotifier {
   // IMPORTANT: Only to retrieve data from bbdd, etc...
   // final String _baseUrl = 'example.com';
 
-  final List<Appointment> appointments = [
+  final List<Appointment> initialAppointments = [
     Appointment(
       id: 0,
       doctorId: 0,
@@ -42,12 +42,13 @@ class AppointmentsService extends ChangeNotifier {
     // }
 
     // IMPORTANT: Dummy data
-    return appointments;
+    return initialAppointments;
   }
 
-  loadAppointmentById(int id) {
-    final Appointment appointment =
-        appointments.firstWhere((appointment) => appointment.id == id);
+  loadAppointmentById(List<Appointment> appointments, int id) {
+    dynamic appointment = appointments.firstWhere(
+      (appointment) => appointment.id == id,
+    );
     return appointment;
   }
 }
